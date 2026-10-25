@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ProductStore.Mvc.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<div class="page-header">
+    <h2>PRODUCT MANAGEMENT</h2>
+</div>
+
+<div class="product-panel">
+
+    <div class="product-panel-header">
+        <h3>Product List</h3>
+
+        @Html.ActionLink(
+            "Create Product",
+            "Create",
+            null,
+            new { @class = "btn btn-primary" }
+        )
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+
+                    <td>
+                        @product.Description
+                    </td>
+
+                    <td>
+                        ₹@product.Price.ToString("N2")
+                    </td>
+
+                    <td>
+                        @product.Category
+                    </td>
+
+                    <td>
+                        @Html.ActionLink(
+                            "Details",
+                            "Details",
+                            new { id = product.Id }
+                        )
+
+                        |
+
+                        @Html.ActionLink(
+                            "Edit",
+                            "Edit",
+                            new { id = product.Id }
+                        )
+
+                        |
+
+                        @Html.ActionLink(
+                            "Delete",
+                            "Delete",
+                            new { id = product.Id }
+                        )
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
